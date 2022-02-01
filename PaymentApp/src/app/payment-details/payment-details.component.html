@@ -20,11 +20,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let pd of service.list">
-                    <td class="text-center">{{pd.cardOwnerName}}</td>
-                    <td class="text-center">{{pd.cardNumber}}</td>
-                    <td class="text-center">{{pd.expirationDate}}</td>
+                    <td (click)="populateForm(pd)" class="text-center">{{pd.cardOwnerName}}</td>
+                    <td (click)="populateForm(pd)" class="text-center">{{pd.cardNumber}}</td>
+                    <td (click)="populateForm(pd)" class="text-center">{{pd.expirationDate}}</td>
                     <td class="text-center">
-                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                        <i (click)="onDelete(pd.paymentDetailId)" class="far fa-trash-alt fa-lg text-danger"></i>
                     </td>
                 </tr>
             </tbody>

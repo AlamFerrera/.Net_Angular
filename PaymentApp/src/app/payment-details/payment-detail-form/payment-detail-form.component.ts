@@ -17,11 +17,34 @@ export class PaymentDetailFormComponent implements OnInit {
   }
 
   onSubmit(form:NgForm){
+    //Si el id es == 0 hace insert, de lo contrario update
+    if(this.service.formData.paymentDetailId == 0){
+      this.insertRecord(form);
+    }
+    else{
+      this.updateRecord(form);
+    }
+  }
+
+  insertRecord(form: NgForm){
     this.service.postPaymentDetail()
+      .subscribe({
+        next: () => {
+          this.resetForm(form);
+          this.service.refreshList();
+          this.toastr.success('Submitted succesfully', 'Payment Detail Registered');
+        },
+        error: (e) => console.log(e)
+      });
+  }
+
+  updateRecord(form:NgForm){
+    this.service.putPaymentDetail()
         .subscribe({
           next: () => {
             this.resetForm(form);
-            this.toastr.success('Submitted succesfully', 'Payment Detail Registered');
+            this.service.refreshList();
+            this.toastr.info('Updated succesfully', 'Payment Detail Updated');
           },
           error: (e) => console.log(e)
         });

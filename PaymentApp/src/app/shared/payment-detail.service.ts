@@ -12,10 +12,21 @@ export class PaymentDetailService {
 
   constructor(private http: HttpClient) { }
 
+  //insert
   postPaymentDetail(){
     return this.http.post(this.baseUrl, this.formData);
   }
 
+  //update
+  putPaymentDetail(){
+    return this.http.put(`${this.baseUrl}/${this.formData.paymentDetailId}`, this.formData);
+  }
+
+  deletePaymentDetail(id:number){
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
+  //get
   refreshList(){
     return this.http.get(this.baseUrl)
           .toPromise()
