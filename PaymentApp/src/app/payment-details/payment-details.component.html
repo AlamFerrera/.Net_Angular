@@ -9,7 +9,26 @@
         <app-payment-detail-form></app-payment-detail-form>
     </div>
     <div class="col-md-6">
-        <span>list of payment details</span>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th class="text-center">Card Owner</th>
+                    <th class="text-center">Card Number</th>
+                    <th class="text-center">Expiration Date</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pd of service.list">
+                    <td class="text-center">{{pd.cardOwnerName}}</td>
+                    <td class="text-center">{{pd.cardNumber}}</td>
+                    <td class="text-center">{{pd.expirationDate}}</td>
+                    <td class="text-center">
+                        <i class="far fa-trash-alt fa-lg text-danger"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
